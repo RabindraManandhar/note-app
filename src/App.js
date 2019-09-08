@@ -8,7 +8,7 @@ import NoteList from "./components/NoteList";
 function App() {
   const initialState = useContext(Notescontext);
   const [state, dispatch] = useReducer(notesReducer, initialState);
-
+  console.log(state);
   return (
     <Notescontext.Provider value={{ state, dispatch }}>
       <Nav />
