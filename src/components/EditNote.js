@@ -1,9 +1,9 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import NotesContext from "../context";
 
-function AddNote() {
-  const { dispatch } = useContext(NotesContext);
-  const [value, setValue] = useState("");
+export default function EditNote() {
+  const { state, dispatch } = useContext(NotesContext);
+  const [value, setValue] = useState(state.currentNote.text);
 
   let ref = useRef();
 
@@ -20,7 +20,7 @@ function AddNote() {
     if (value.trim() === "") {
       alert("Cannot add a blank note");
     } else {
-      dispatch({ type: "ADD_NOTE", payload: value });
+      dispatch({ type: "UPDATE_NOTE", payload: value });
       setValue("");
     }
   };
@@ -28,11 +28,19 @@ function AddNote() {
   return (
     <div className="note-form">
       <form onSubmit={handleSubmit} action="">
-        <input type="text" ref={ref} onChange={handleChange} value={value} />
-        <button>Add Note</button>
+        <textarea
+          ref={ref}
+          onChange={handleChange}
+          value={value}
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        />
+        <div style={{ textAlign: "right" }}>
+          <button>Update Note</button>
+        </div>
       </form>
     </div>
   );
 }
-
-export default AddNote;

@@ -14,7 +14,12 @@ export default function Note({ note }) {
         >
           Edit
         </button>
-        <button className="delete">Delete</button>
+        <button
+          onClick={() => dispatch({ type: "DELETE_NOTE", payload: note.id })}
+          className="delete"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
